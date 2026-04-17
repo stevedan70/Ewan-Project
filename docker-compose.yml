@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+    web:
+        build: .
+        image: voice-up-nginx:latest
+        container_name: voice-up-nginx
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        volumes:
+            - .:/var/www/html
+            - ./docker/nginx/conf.d:/etc/nginx/sites-available
+        ports:
+            - "4001:80"
+            - "5173:5173"
